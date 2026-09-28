@@ -13,9 +13,18 @@ spec:
     helm: {}
   sources: []
   project: default
+  ignoreDifferences:
+  - group: datasciencepipelinesapplications.opendatahub.io
+    kind: DataSciencePipelinesApplication
+    jsonPointers:
+    - /spec/objectStorage/externalStorage/bucket
+    - /spec/objectStorage/externalStorage/host
+    - /spec/objectStorage/externalStorage/scheme
+    - /spec/objectStorage/externalStorage/region
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
+    - RespectIgnoreDifferences=true
     automated:
       prune: true
       selfHeal: true
