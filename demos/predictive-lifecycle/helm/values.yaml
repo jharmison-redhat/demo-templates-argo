@@ -3,22 +3,18 @@ workbench:
   imageDisplayName: Jupyter | Data Science | CPU | Python 3.12
 
 database:
-  user: ''
-  password: ''
-  database: 'mydatabase'
-  schema: 'myschema'
-  table: 'mytable'
+  user: ""
+  password: ""
+  database: "mydatabase"
+  schema: "myschema"
+  table: "mytable"
   columns:
-  - name: home_sq_ft
-    type: DECIMAL
+    - name: home_sq_ft
+      type: DECIMAL
 
 trustyai:
   cluster-monitoring:
     enabled: false
   database:
-    user: ''
-    password: ''
-
-mlflow:
-  minio:
-    enabled: true
+    user: ""
+    password: ""
