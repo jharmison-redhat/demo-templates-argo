@@ -12,9 +12,6 @@ dependencies:
   - name: create-model-registry
     version: 0.0.4
     repository: https://redhat-ai-americas.github.io/create-model-registry
-  - name: minio
-    version: 0.1.0
-    repository: "file://../../../helm/10-minio"
   - name: pipeline-server
     version: 0.1.0
     repository: "file://../../../helm/20-pipeline-server"

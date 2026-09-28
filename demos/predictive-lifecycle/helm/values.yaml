@@ -12,9 +12,12 @@ database:
     - name: home_sq_ft
       type: DECIMAL
 
+pipeline-server:
+  objectStorage:
+    generateBucketName: pipeline-artifacts
+    storageClassName: openshift-storage.noobaa.io
+
 trustyai:
-  cluster-monitoring:
-    enabled: false
   database:
     user: ""
     password: ""

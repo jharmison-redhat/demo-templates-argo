@@ -1,6 +1,3 @@
-cluster-monitoring:
-  enabled: true
-
 database:
   user: ''
   password: ''

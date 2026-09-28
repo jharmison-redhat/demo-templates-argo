@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pipeline-object-storage-job
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "21"
+spec:
+  template:
+    spec:
+      containers:
+        - name: installer
+          image: registry.redhat.io/openshift4/ose-cli:latest
+          command: ["/bin/bash"]
+          args:
+            - -ec
+            - |-
+              echo -n 'Waiting for ObjectBucketClaim to be bound'
+              timeout=600
+              time=0
+              step=5
+              while ! [ "$(oc get objectbucketclaim {{ .Values.objectStorage.generateBucketName }} -ojsonpath='{.status.phase}' 2>/dev/null)" = "Bound" ]; do
+                if (( time >= timeout )); then
+                  echo
+                  echo "Timed out waiting for ObjectBucketClaim binding" >&2
+                  exit 1
+                fi
+                sleep $step
+                (( time += step ))
+                echo -n .
+              done; echo
+              obc_cm="{{ .Values.objectStorage.generateBucketName }}"
+              bucket="$(oc get cm "$obc_cm" -ojsonpath='{.data.BUCKET_NAME}')"
+              host="$(oc get cm "$obc_cm" -ojsonpath='{.data.BUCKET_HOST}')"
+              port="$(oc get cm "$obc_cm" -ojsonpath='{.data.BUCKET_PORT}')"
+              region="$(oc get cm "$obc_cm" -ojsonpath='{.data.BUCKET_REGION}')"
+              scheme="http"
+              if [ "$port" = "443" ]; then scheme="https"; fi
+              oc patch dspa dspa --type merge -p "{\"spec\":{\"objectStorage\":{\"externalStorage\":{\"bucket\":\"$bucket\",\"host\":\"$host:$port\",\"scheme\":\"$scheme\",\"region\":\"${region:-none}\"}}}}"
+      restartPolicy: Never
+      serviceAccountName: pipeline-server-{{ .Release.Namespace }}
+  backoffLimit: 1

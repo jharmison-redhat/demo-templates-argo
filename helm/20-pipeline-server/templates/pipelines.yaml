@@ -31,16 +31,15 @@ spec:
     enableExternalRoute: false
     externalStorage:
       basePath: ''
-      bucket: pipeline-artifacts
-      host: minio.{{ .Release.Namespace }}.svc.cluster.local
+      bucket: ''
+      host: ''
       port: ''
-      region: us-east-1
+      region: ''
       s3CredentialsSecret:
         accessKey: AWS_ACCESS_KEY_ID
         secretKey: AWS_SECRET_ACCESS_KEY
-        secretName: pipeline-artifacts
-      scheme: http
-      port: "9000"
+        secretName: {{ .Values.objectStorage.generateBucketName }}
+      scheme: https
   persistenceAgent:
     deploy: true
     numWorkers: 2

@@ -13,27 +13,12 @@ spec:
     targetRevision: HEAD
     helm:
       valuesObject:
-        mlflow:
-          minio:
-            enabled: true
-            buckets:
-              models: models
-              rootUser: minio
-              rootPassword: minio!23
-          database:
-            user: 'mlflowuser'
-            password: 'mlflowpassword'
-            database: 'mlflow'
         create-model-registry:
           mysql:
             user: registryuser
             password: registrypass
             database: registrydb
             root_password: registrypass
-        minio:
-          buckets:
-            rootUser: &rootUser minio
-            rootPassword: &rootPassword minio!23
         trustyai:
           database:
             user: 'trusty'

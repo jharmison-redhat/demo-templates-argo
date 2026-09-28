@@ -14,6 +14,25 @@ rules:
       - ''
     resources:
       - secrets
+  - verbs:
+      - get
+    apiGroups:
+      - ''
+    resources:
+      - configmaps
+  - verbs:
+      - get
+    apiGroups:
+      - objectbucket.io
+    resources:
+      - objectbucketclaims
+  - verbs:
+      - get
+      - patch
+    apiGroups:
+      - datasciencepipelinesapplications.opendatahub.io
+    resources:
+      - datasciencepipelinesapplications
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1

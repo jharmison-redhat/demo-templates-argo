@@ -15,7 +15,7 @@ This purpose of this demo is to show off the full predictive model lifecycle in 
 6. Log back into the `build-model` workbench.
     1. Run `endpoint.ipynb` in the `scripts/` directory to validate connectivity.
 
-The pipeline that runs consists of three components: train the model, upload it to S3 (by way of MinIO), and register the model into the Model Registry.
+The pipeline that runs consists of three components: train the model, upload it to S3, and register the model into the Model Registry.
 
 
 ## Demo Flow

@@ -10,12 +10,7 @@ spec:
     path: helm/20-pipeline-server/
     repoURL: https://github.com/redhat-ai-americas/demo-templates-argo.git
     targetRevision: HEAD
-    helm:
-      parameters:
-        - name: minio.buckets.rootUser
-          value: minio
-        - name: minio.buckets.rootPassword
-          value: minio!23
+    helm: {}
   sources: []
   project: default
   syncPolicy:
