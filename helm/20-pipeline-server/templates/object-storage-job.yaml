@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: installer
-          image: registry.redhat.io/openshift4/ose-cli:latest
+          image: {{ .Values.openshiftToolsImage }}
           command: ["/bin/bash"]
           args:
             - -ec

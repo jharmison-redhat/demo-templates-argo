@@ -1,3 +1,5 @@
+openshiftToolsImage: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+
 objectStorage:
   generateBucketName: pipeline-artifacts
   storageClassName: openshift-storage.noobaa.io
